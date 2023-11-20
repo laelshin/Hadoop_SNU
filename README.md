@@ -236,7 +236,7 @@ sudo chown -R lshin /usr/local/hadoop
 hdfs namenode -format
 ```
 ##Starting and Stopping Hadoop
-We should run start-dfs.sh to start the hdfs-daemon, and run stop-dfs.sh to stop the daemon.
+We should run *start-dfs.sh* to start the hdfs-daemon, and run *stop-dfs.sh* to stop the daemon.
 ```
 alias hadoopon='/usr/local/hadoop/sbin/start-dfs.sh`
 alias hadoopoff='/usr/local/hadoop/sbin/stop-dfs.sh`
@@ -257,12 +257,14 @@ lshin@node1:~$ jps
 436803 Jps
 436590 DataNode
 ```
-##Hadoop webUI 
+
+## Hadoop webUI 
 Setting an exporting alias at the personal laptop
 ```
 alias xporthadoop='ssh -N -L 9870:localhost:9870 lshin@sohnic.snu.ac.kr
 ```
-Accessing the local browser with 'localhost:9870'
+Accessing the local browser with an address *localhost:9870*
+![alt text](https://github.com/laelshin/Hadoop_SNU/blob/main/Hadoop_webUI.png)
 
 
 
