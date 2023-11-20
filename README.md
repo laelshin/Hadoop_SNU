@@ -1,5 +1,5 @@
 # Hadoop_SNU
-The Hadoop setting procedure at SNU
+Setting the Hadoop cluster at Seoul National University
 
 1 Master node
 * CPU: Intel Xeon W-2265, 12 cores, 24 threads
@@ -25,13 +25,17 @@ Host *
    	StrictHostKeyChecking=no
 ```
 # Basic Setting
+We need to download relevant packages at the every node.
 ```
 sudo apt update
 sudo apt install vim
 sudo apt install git
 sudo apt install tmux
 ```
-
+Downloading JAVA
+```
+sudo apt install openjdk-11-jdk openjdk-11-jre
+```
 # Disk Partition
 # .xml File Setting (Port Control)
 # Directory Format & Run Hadoop Daemon
