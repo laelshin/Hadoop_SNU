@@ -1,6 +1,16 @@
 # Hadoop_SNU
 The Hadoop setting procedure at SNU
-1 Master node, 9 Worker nodes
+
+1 Master node
+* CPU: Intel Xeon W-2265, 12 cores, 24 threads
+* Memory: 128GB DDR4
+* Disk: 1TB SSD, 24TB HDD
+
+9 Worker nodes
+* CPU: Intel i7-13700K, 16 cores, 24 threads
+* Memory: 128GB DDR5
+* Disk: 500GB SSD, 64TB HDD
+
 
 # Passwordless Connection
 ```
