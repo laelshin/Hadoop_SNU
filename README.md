@@ -79,6 +79,15 @@ Description:	Ubuntu 22.04.1 LTS
 Release:	22.04
 Codename:	jammy
 ```
+# Installing Hadoop
+Installing stable release of hadoop-3.3.6
+```
+tar -xzvf hadoop-3.3.6.tar.gz
+sudo mv hadoop-3.3.6 /usr/local/hadoop
+sudo wget https://archive.apache.org/dist/hadoop/common/hadoop-3.3.6/hadoop-3.3.6.tar.gz
+```
+Setting JAVA
+
 # Disk Partition
 # .xml File Setting (Port Control)
 # Directory Format & Run Hadoop Daemon
