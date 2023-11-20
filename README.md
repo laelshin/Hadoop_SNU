@@ -219,6 +219,50 @@ node7
 node8
 node9
 ```
+Setting HADOOP_HOME
+```
+vi .bashrc
+
+# Hadoop bin
+export HADOOP_HOME=/usr/local/hadoop
+export PATH=$HADOOP_HOME/bin:$HADOOP_HOME/sbin:$PATH
+```
+Formatting the name node
+```
+sudo rm -rf /mnt/data1/hdfs
+sudo mkdir -pv /mnt/data1/hdfs/name
+sudo chown -R lshin /mnt/data1/hdfs
+sudo chown -R lshin /usr/local/hadoop
+hdfs namenode -format
+```
+##Starting and Stopping Hadoop
+We should run start-dfs.sh to start the hdfs-daemon, and run stop-dfs.sh to stop the daemon.
+```
+alias hadoopon='/usr/local/hadoop/sbin/start-dfs.sh`
+alias hadoopoff='/usr/local/hadoop/sbin/stop-dfs.sh`
+alias hfs='hadoop fs'
+```
+Monitoring Hadoop at the name node
+```
+lshin@sohnic:~$ jps
+
+711017 NameNode
+711341 SecondaryNameNode
+711509 Jps
+```
+at the worker node
+```
+lshin@node1:~$ jps
+
+436803 Jps
+436590 DataNode
+```
+##Hadoop webUI 
+Setting an exporting alias at the personal laptop
+```
+alias xporthadoop='ssh -N -L 9870:localhost:9870 lshin@sohnic.snu.ac.kr
+```
+Accessing the local browser with 'localhost:9870'
 
 
 
