@@ -348,12 +348,43 @@ Pi is roughly 3.144280
 ## Spark webUI 
 Setting an exporting alias at the personal laptop
 ```
-aalias xportspark='ssh -N -L 8080:localhost:8080 lshin@sohnic.snu.ac.kr'
+alias xportspark='ssh -N -L 8080:localhost:8080 lshin@sohnic.snu.ac.kr'
 ```
 Accessing the local browser with an address *localhost:8080*
 ![alt text](https://github.com/laelshin/Hadoop_SNU/blob/main/Spark_webUI.png)
 
+## Setting Jupyter notebook
+Running Jupyter notebook with --no-browser option
+```
+vi .bashrc
 
+alias jupon='jupyter notebook --no-browser --port=7788'
+alias labon='jupyter lab --no-browser --port=8899'
+
+jupyter notebook password
+```
+Connecting with a labtop
+```
+alias xportjup='ssh -N -L 7788:localhost:7788 lshin@sohnic.snu.ac.kr'
+```
+
+Running another spark stand-alone example with jupyter notebook
+
+[https://github.com/shongscience/misc/tree/master/pyspark-tutorial](https://github.com/shongscience/misc/tree/master/pyspark-tutorial)
+
+Making Spark session
+```
+from pyspark.sql import SparkSession
+
+# Initialize a SparkSession
+spark = SparkSession.builder \
+    .appName("MyApp") \
+    .master("spark://sohnic:7077") \
+    .config("spark.driver.memory", "16g") \
+    .config("spark.executor.memory", "58g") \
+    .config("spark.jars.packages", "graphframes:graphframes:0.7.0-spark2.4-s_2.11") \
+    .getOrCreate()
+```
 # .xml File Setting (Port Control)
 
 
