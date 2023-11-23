@@ -484,7 +484,7 @@ Setting an exporting alias at the personal laptop
 alias xportyarn='ssh -N -L 8088:localhost:8088 lshin@sohnic.snu.ac.kr'
 ```
 Accessing the local browser with an address *localhost:8080*
-![alt text](https://github.com/laelshin/Hadoop_SNU/blob/main/Spark_webUI.png)
+![alt text](https://github.com/laelshin/Hadoop_SNU/blob/main/Yarn_webUI.png)
 
 Making Spark session with YARN and running the Jupyter notebook example again
 ```
