@@ -266,11 +266,85 @@ alias xporthadoop='ssh -N -L 9870:localhost:9870 lshin@sohnic.snu.ac.kr
 Accessing the local browser with an address *localhost:9870*
 ![alt text](https://github.com/laelshin/Hadoop_SNU/blob/main/Hadoop_webUI.png)
 
+## Downloading Scala
+Downloading Scala in every node.
+```
+sudo wget www.scala-lang.org/files/archive/scala-2.13.0.deb
+sudo dpkg -i scala-2.13.0.deb
+scala
+```
 
+## Downloading Spark
+```
+sudo wget https://archive.apache.org/dist/spark/spark-3.3.1/tar -xzvf spark-3.4.1-bin-hadoop3-scala2.13.tgz
+tar -xzvf spark-3.4.1-bin-hadoop3-scala2.13.tgz
+sudo mv spark-3.4.1-bin-hadoop3-scala2.13.tgz /usr/local/spark
+```
+## Downloading Python
+Downloading python3, jupyter notebook, jupyter lab, and python packages in every node.
+```
+pip install numpy, scipy, scikit-learn, pyarrow, tqdm, astropy, pandas
+pip install pyspark==3.4.1
+pip list |grep spark
+pyspark                   3.4.1
+```
+
+## Setting Spark
+```
+vi /usr/local/saprk/conf/workers
+
+node1
+node2
+node3
+node4
+node5
+node6
+node7
+node8
+node9
+
+vi .bashrc
+
+# Java Home
+export JAVA_HOME=$(readlink -f /usr/bin/java | sed "s:bin/java::")
+export PATH=$JAVA_HOME:$PATH
+
+# Hadoop path
+export HADOOP_HOME=/usr/local/hadoop
+export PATH=$HADOOP_HOME/bin:$HADOOP_HOME/sbin:$PATH
+
+# Scala Home
+export SCALA_HOME=/usr/share/scala
+export PATH=$SCALA_HOME/bin:$PATH
+
+# Spark Home
+export SPARK_HOME=/usr/local/spark
+export PYTHONPATH=/usr/local/spark/python/:$PYTHONPATH
+export PYTHONPATH=/usr/local/spark/python/lib/py4j-0.10.9.7-src.zip:$PYTHONPATH
+export PATH=$SPARK_HOME/bin:$PATH
+
+# PySpark paths
+export PYSPARK_PYTHON=/usr/bin/python3
+
+
+# some minor bug-busting settings and misc.
+export TERM=xterm-color
+export PATH=/home/shong/mybin:$PATH
+
+alias sparkon='$SPARK_HOME/sbin/start-master.sh -h sohnic && $SPARK_HOME/sbin/start-workers.sh spark://sohnic00:7077'
+alias sparkoff='$SPARK_HOME/sbin/stop-all.sh'
+```
+
+## Spark webUI 
+Setting an exporting alias at the personal laptop
+```
+aalias xportspark='ssh -N -L 8080:localhost:8080 lshin@sohnic.snu.ac.kr'
+```
+Accessing the local browser with an address *localhost:8080*
+![alt text](https://github.com/laelshin/Hadoop_SNU/blob/main/Spark_webUI.png)
 
 
 # .xml File Setting (Port Control)
-# Directory Format & Run Hadoop Daemon
 
 
 
