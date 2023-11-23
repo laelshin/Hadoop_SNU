@@ -1,5 +1,5 @@
 # Hadoop_SNU
-Setting the Hadoop cluster at Seoul National University
+Setting the Hadoop cluster at Seoul National University (Advisor: Sungryong Hong (KASI), Jubee Sohn (SNU))
 
 Master node $\times$ 1
 * CPU: Intel Xeon W-2265, 12 cores, 24 threads
@@ -385,7 +385,129 @@ spark = SparkSession.builder \
     .config("spark.jars.packages", "graphframes:graphframes:0.7.0-spark2.4-s_2.11") \
     .getOrCreate()
 ```
-# .xml File Setting (Port Control)
 
+# Setting YARN
+```
+vi .bashrc
 
+export YARN_CONF_DIR=$HADOOP_HOME/etc/hadoop
+alias yarnon='/usr/local/hadoop/sbin/start-yarn.sh'
+alias yarnoff='/usr/local/hadoop/sbin/stop-yarn.sh'
+```
 
+Setting the xml files
+```
+vi /usr/local/hadoop/etc/hadoop/yarn-site.xml
+
+<?xml version="1.0"?>
+<!--
+  Licensed under the Apache License, Version 2.0 (the "License");
+  you may not use this file except in compliance with the License.
+  You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License. See accompanying LICENSE file.
+-->
+<configuration>
+
+<property>
+    <name>yarn.resourcemanager.resource-tracker.address</name>
+    <value>sohnic:8025</value>
+</property>
+<property>
+    <name>yarn.resourcemanager.scheduler.address</name>
+    <value>sohnic:8035</value>
+</property>
+<property>
+    <name>yarn.resourcemanager.address</name>
+    <value>sohnic:8050</value>
+</property>
+
+<!-- Site specific YARN configuration properties -->
+
+<!-- Global cluster settings -->
+<property>
+    <name>yarn.nodemanager.resource.memory-mb</name>
+    <value>120000</value>
+    <description>Amount of physical memory to be made available for containers on each node.</description>
+</property>
+<property>
+    <name>yarn.nodemanager.resource.cpu-vcores</name>
+    <value>20</value>
+    <description>Number of CPU cores to be made available for containers on each node.</description>
+</property>
+
+<!-- Application-specific settings -->
+<property>
+    <name>yarn.scheduler.minimum-allocation-mb</name>
+    <value>1024</value>
+    <description>Minimum memory allocation for a container.</description>
+</property>
+<property>
+    <name>yarn.scheduler.maximum-allocation-mb</name>
+    <value>120000</value>
+    <description>Maximum memory allocation for a container.</description>
+</property>
+<property>
+    <name>yarn.scheduler.minimum-allocation-vcores</name>
+    <value>1</value>
+    <description>Minimum number of virtual CPU cores that can be allocated for a container.</description>
+</property>
+<property>
+    <name>yarn.scheduler.maximum-allocation-vcores</name>
+    <value>20</value>
+    <description>Maximum number of virtual CPU cores that can be allocated for a container.</description>
+</property>
+
+<!-- Permission settings -->
+<property>
+  <name>yarn.resourcemanager.principal</name>
+  <value>lshin</value>
+</property>
+
+<property>
+  <name>yarn.nodemanager.principal</name>
+  <value>lshin</value>
+</property>
+
+</configuration>
+```
+
+## YARN webUI 
+Setting an exporting alias at the personal laptop
+```
+alias xportyarn='ssh -N -L 8088:localhost:8088 lshin@sohnic.snu.ac.kr'
+```
+Accessing the local browser with an address *localhost:8080*
+![alt text](https://github.com/laelshin/Hadoop_SNU/blob/main/Spark_webUI.png)
+
+Making Spark session with YARN and running the Jupyter notebook example again
+```
+# PySpark packages
+from pyspark import SparkContext   
+#from pyspark.sql import SQLContext; SQLContex is obsolete !! using SparkSession
+from pyspark.sql import SparkSession
+
+spark = SparkSession.builder \
+    .master("yarn") \
+    .appName("spark-shell") \
+    .config("spark.driver.maxResultSize", "32g") \
+    .config("spark.driver.memory", "64g") \
+    .config("spark.executor.memory", "7g") \
+    .config("spark.executor.cores", "1") \
+    .config("spark.executor.instances", "50") \
+    .getOrCreate()
+
+sc = spark.sparkContext
+sc.setCheckpointDir("hdfs://sohnic:54310/tmp/spark/checkpoints")
+
+import pyspark.sql.functions as F
+import pyspark.sql.types as T
+from pyspark import Row
+from pyspark.sql.window import Window as W
+```
