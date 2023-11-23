@@ -276,14 +276,18 @@ scala
 
 ## Downloading Spark
 ```
-sudo wget https://archive.apache.org/dist/spark/spark-3.3.1/tar -xzvf spark-3.4.1-bin-hadoop3-scala2.13.tgz
+sudo wget https://archive.apache.org/dist/spark/spark-3.4.1/spark-3.4.1-bin-hadoop3-scala2.13.tgz
 tar -xzvf spark-3.4.1-bin-hadoop3-scala2.13.tgz
 sudo mv spark-3.4.1-bin-hadoop3-scala2.13.tgz /usr/local/spark
+sudo chown -R lshin /usr/local/spark
 ```
 ## Downloading Python
 Downloading python3, jupyter notebook, jupyter lab, and python packages in every node.
 ```
-pip install numpy, scipy, scikit-learn, pyarrow, tqdm, astropy, pandas
+apt install python3-pip
+pip install numpy scipy scikit-learn pyarrow tqdm astropy pandas
+pip install jupyterlab
+pip install notebook
 pip install pyspark==3.4.1
 pip list |grep spark
 pyspark                   3.4.1
@@ -333,6 +337,12 @@ export PATH=/home/shong/mybin:$PATH
 
 alias sparkon='$SPARK_HOME/sbin/start-master.sh -h sohnic && $SPARK_HOME/sbin/start-workers.sh spark://sohnic00:7077'
 alias sparkoff='$SPARK_HOME/sbin/stop-all.sh'
+```
+Running a spark stand-alone example
+```
+spark-submit --master spark://sohnic:7077 /usr/local/lib/python3.10/dist-packages/pyspark/examples/src/main/python/pi.py 100
+
+Pi is roughly 3.144280
 ```
 
 ## Spark webUI 
