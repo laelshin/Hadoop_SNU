@@ -1,5 +1,5 @@
 # Hadoop_SNU
-Setting the Hadoop cluster at Seoul National University (Advisor: Sungryong Hong (KASI), Jubee Sohn (SNU))
+Setting the Hadoop cluster at Seoul National University (Advisor: Sungryong Hong (KASI), Jubee Sohn (SNU), Hee Il Kim)
 
 Master node $\times$ 1
 * CPU: Intel Xeon W-2265, 12 cores, 24 threads
