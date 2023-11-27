@@ -372,7 +372,7 @@ Running another spark stand-alone example with jupyter notebook
 
 [https://github.com/shongscience/misc/tree/master/pyspark-tutorial](https://github.com/shongscience/misc/tree/master/pyspark-tutorial)
 
-Making Spark session
+Making a Spark session
 ```
 from pyspark.sql import SparkSession
 
