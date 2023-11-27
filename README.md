@@ -98,13 +98,13 @@ mount /dev/sda1 /mnt/data1
 ## Installing Hadoop
 Installing stable release of hadoop-3.3.6
 ```
-tar -xzvf hadoop-3.3.6.tar.gz
-sudo mv hadoop-3.3.6 /usr/local/hadoop
-sudo wget https://archive.apache.org/dist/hadoop/common/hadoop-3.3.6/hadoop-3.3.6.tar.gz
+lshin@sohnic:~$ tar -xzvf hadoop-3.3.6.tar.gz
+lshin@sohnic:~$ sudo mv hadoop-3.3.6 /usr/local/hadoop
+lshin@sohnic:~$ sudo wget https://archive.apache.org/dist/hadoop/common/hadoop-3.3.6/hadoop-3.3.6.tar.gz
 ```
 Setting JAVA_HOME
 ```
-vi /usr/local/hadoop/etc/hadoop/hadoop-env.sh
+lshin@sohnic:~$ vi /usr/local/hadoop/etc/hadoop/hadoop-env.sh
 
 export JAVA_HOME=$(readlink -f /usr/bin/java | sed "s:bin/java::")
 ```
@@ -221,7 +221,7 @@ node9
 ```
 Setting HADOOP_HOME
 ```
-vi .bashrc
+lshin@sohnic:~$ vi .bashrc
 
 # Hadoop bin
 export HADOOP_HOME=/usr/local/hadoop
@@ -229,11 +229,11 @@ export PATH=$HADOOP_HOME/bin:$HADOOP_HOME/sbin:$PATH
 ```
 Formatting the name node
 ```
-sudo rm -rf /mnt/data1/hdfs
-sudo mkdir -pv /mnt/data1/hdfs/name
-sudo chown -R lshin /mnt/data1/hdfs
-sudo chown -R lshin /usr/local/hadoop
-hdfs namenode -format
+root@sohnic:~$ sudo rm -rf /mnt/data1/hdfs
+root@sohnic:~$ sudo mkdir -pv /mnt/data1/hdfs/name
+root@sohnic:~$ sudo chown -R lshin /mnt/data1/hdfs
+root@sohnic:~$ sudo chown -R lshin /usr/local/hadoop
+root@sohnic:~$ hdfs namenode -format
 ```
 ##Starting and Stopping Hadoop
 We should run *start-dfs.sh* to start the hdfs-daemon, and run *stop-dfs.sh* to stop the daemon.
@@ -269,33 +269,33 @@ Accessing the local browser with an address *localhost:9870*
 ## Downloading Scala
 Downloading Scala in every node.
 ```
-sudo wget www.scala-lang.org/files/archive/scala-2.13.0.deb
-sudo dpkg -i scala-2.13.0.deb
-scala
+root@sohnic:~$ sudo wget www.scala-lang.org/files/archive/scala-2.13.0.deb
+root@sohnic:~$ sudo dpkg -i scala-2.13.0.deb
+root@sohnic:~$ scala
 ```
 
 ## Downloading Spark
 ```
-sudo wget https://archive.apache.org/dist/spark/spark-3.4.1/spark-3.4.1-bin-hadoop3-scala2.13.tgz
-tar -xzvf spark-3.4.1-bin-hadoop3-scala2.13.tgz
-sudo mv spark-3.4.1-bin-hadoop3-scala2.13.tgz /usr/local/spark
-sudo chown -R lshin /usr/local/spark
+root@sohnic:~$ sudo wget https://archive.apache.org/dist/spark/spark-3.4.1/spark-3.4.1-bin-hadoop3-scala2.13.tgz
+root@sohnic:~$ tar -xzvf spark-3.4.1-bin-hadoop3-scala2.13.tgz
+root@sohnic:~$ sudo mv spark-3.4.1-bin-hadoop3-scala2.13.tgz /usr/local/spark
+root@sohnic:~$ sudo chown -R lshin /usr/local/spark
 ```
 ## Downloading Python
 Downloading python3, jupyter notebook, jupyter lab, and python packages in every node.
 ```
-apt install python3-pip
-pip install numpy scipy scikit-learn pyarrow tqdm astropy pandas
-pip install jupyterlab
-pip install notebook
-pip install pyspark==3.4.1
-pip list |grep spark
+lshin@sohnic:~$ apt install python3-pip
+lshin@sohnic:~$ pip install numpy scipy scikit-learn pyarrow tqdm astropy pandas
+lshin@sohnic:~$ pip install jupyterlab
+lshin@sohnic:~$ pip install notebook
+lshin@sohnic:~$ pip install pyspark==3.4.1
+lshin@sohnic:~$ pip list |grep spark
 pyspark                   3.4.1
 ```
 
 ## Setting Spark
 ```
-vi /usr/local/saprk/conf/workers
+lshin@sohnic:~$ vi /usr/local/saprk/conf/workers
 
 node1
 node2
@@ -307,7 +307,7 @@ node7
 node8
 node9
 
-vi .bashrc
+lshin@sohnic:~$ vi .bashrc
 
 # Java Home
 export JAVA_HOME=$(readlink -f /usr/bin/java | sed "s:bin/java::")
@@ -340,7 +340,7 @@ alias sparkoff='$SPARK_HOME/sbin/stop-all.sh'
 ```
 Running a spark stand-alone example
 ```
-spark-submit --master spark://sohnic:7077 /usr/local/lib/python3.10/dist-packages/pyspark/examples/src/main/python/pi.py 100
+lshin@sohnic:~$ spark-submit --master spark://sohnic:7077 /usr/local/lib/python3.10/dist-packages/pyspark/examples/src/main/python/pi.py 100
 
 Pi is roughly 3.144280
 ```
@@ -356,7 +356,7 @@ Accessing the local browser with an address *localhost:8080*
 ## Setting Jupyter notebook
 Running Jupyter notebook with --no-browser option
 ```
-vi .bashrc
+lshin@sohnic:~$ vi .bashrc
 
 alias jupon='jupyter notebook --no-browser --port=7788'
 alias labon='jupyter lab --no-browser --port=8899'
@@ -388,7 +388,7 @@ spark = SparkSession.builder \
 
 # Setting YARN
 ```
-vi .bashrc
+lshin@sohnic:~$ vi .bashrc
 
 export YARN_CONF_DIR=$HADOOP_HOME/etc/hadoop
 alias yarnon='/usr/local/hadoop/sbin/start-yarn.sh'
@@ -397,7 +397,7 @@ alias yarnoff='/usr/local/hadoop/sbin/stop-yarn.sh'
 
 Setting the xml files
 ```
-vi /usr/local/hadoop/etc/hadoop/yarn-site.xml
+lshin@sohnic:~$ vi /usr/local/hadoop/etc/hadoop/yarn-site.xml
 
 <?xml version="1.0"?>
 <!--
