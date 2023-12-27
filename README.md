@@ -227,16 +227,17 @@ lshin@sohnic:~$ vi .bashrc
 export HADOOP_HOME=/usr/local/hadoop
 export PATH=$HADOOP_HOME/bin:$HADOOP_HOME/sbin:$PATH
 ```
-Formatting the name node
+Formatting the name node (We should give the permission to the user in every node.)
 ```
 root@sohnic:~$ sudo rm -rf /mnt/data1/hdfs
 root@sohnic:~$ sudo mkdir -pv /mnt/data1/hdfs/name
-root@sohnic:~$ sudo chown -R lshin /mnt/data1/hdfs
 root@sohnic:~$ sudo chown -R lshin /usr/local/hadoop
-root@sohnic:~$ hdfs namenode -format
+root@sohnic:~$ sudo chown -R lshin /mnt
 root@sohnic:~$ sudo chown -R lshin /tmp
+root@sohnic:~$ hdfs namenode -format
+
 ```
-##Starting and Stopping Hadoop
+## Starting and Stopping Hadoop
 We should run *start-dfs.sh* to start the hdfs-daemon, and run *stop-dfs.sh* to stop the daemon.
 ```
 alias hadoopon='/usr/local/hadoop/sbin/start-dfs.sh`
