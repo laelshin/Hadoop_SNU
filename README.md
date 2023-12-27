@@ -234,6 +234,7 @@ root@sohnic:~$ sudo mkdir -pv /mnt/data1/hdfs/name
 root@sohnic:~$ sudo chown -R lshin /mnt/data1/hdfs
 root@sohnic:~$ sudo chown -R lshin /usr/local/hadoop
 root@sohnic:~$ hdfs namenode -format
+root@sohnic:~$ sudo chown -R lshin /tmp
 ```
 ##Starting and Stopping Hadoop
 We should run *start-dfs.sh* to start the hdfs-daemon, and run *stop-dfs.sh* to stop the daemon.
