@@ -15,7 +15,7 @@ Worker nodes $\times$ 9
 ## Passwordless Connection
 ```
 ssh-keygen -t rsa -P '' -f ~/.ssh/id_rsa
-cat id_rsa.pub >> authorized_keys
+cat ~/.ssh/id_rsa.pub >> authorized_keys
 chmod 0600 ./authorized_keys 
 ```
 ```
