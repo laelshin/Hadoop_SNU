@@ -98,13 +98,13 @@ mount /dev/sda1 /mnt/data1
 ## Installing Hadoop
 Installing stable release of hadoop-3.3.6
 ```
-lshin@sohnic:~$ tar -xzvf hadoop-3.3.6.tar.gz
-lshin@sohnic:~$ sudo mv hadoop-3.3.6 /usr/local/hadoop
-lshin@sohnic:~$ sudo wget https://archive.apache.org/dist/hadoop/common/hadoop-3.3.6/hadoop-3.3.6.tar.gz
+root@sohnic:~$ tar -xzvf hadoop-3.3.6.tar.gz
+root@sohnic:~$ sudo mv hadoop-3.3.6 /usr/local/hadoop
+root@sohnic:~$ sudo wget https://archive.apache.org/dist/hadoop/common/hadoop-3.3.6/hadoop-3.3.6.tar.gz
 ```
 Setting JAVA_HOME
 ```
-lshin@sohnic:~$ vi /usr/local/hadoop/etc/hadoop/hadoop-env.sh
+root@sohnic:~$ vi /usr/local/hadoop/etc/hadoop/hadoop-env.sh
 
 export JAVA_HOME=$(readlink -f /usr/bin/java | sed "s:bin/java::")
 ```
