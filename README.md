@@ -227,14 +227,15 @@ lshin@sohnic:~$ vi .bashrc
 export HADOOP_HOME=/usr/local/hadoop
 export PATH=$HADOOP_HOME/bin:$HADOOP_HOME/sbin:$PATH
 ```
-Formatting the name node (We should give the permission to the user in every node.)
+Formatting the name node and the data node (We should give permission to the user in every node.)
 ```
 root@sohnic:~$ sudo rm -rf /mnt/data1/hdfs
 root@sohnic:~$ sudo mkdir -pv /mnt/data1/hdfs/name
+root@sohnic:~$ hdfs namenode -format
 root@sohnic:~$ sudo chown -R lshin /usr/local/hadoop
 root@sohnic:~$ sudo chown -R lshin /mnt
 root@sohnic:~$ sudo chown -R lshin /tmp
-root@sohnic:~$ hdfs namenode -format
+root@sohnic:~$ ssh node[123456789] rm -rf /mnt/data[1234]/hdfs/data/*
 
 ```
 ## Starting and Stopping Hadoop
